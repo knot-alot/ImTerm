@@ -23,6 +23,8 @@
 
 #include "terminal.hpp"
 #if __has_include("spdlog/spdlog.h")
+#include "spdlog/spdlog.h"
+#include "spdlog/pattern_formatter.h"
 #include "spdlog/common.h"
 #include "spdlog/formatter.h"
 #include "spdlog/details/log_msg.h"
@@ -242,7 +244,7 @@ namespace ImTerm {
 		// set logging pattern per message type, for feed-back messages from the terminal
 		void set_terminal_pattern(const std::string& pattern, ImTerm::message::type type) {
 			std::lock_guard<Mutex> lock(SinkBase::mutex_);
-			set_terminal_pattern_(std::make_unique<spdlog::pattern_formatter>(pattern), type);
+			set_terminal_pattern_(pattern, type);
 		}
 
 		void set_terminal_formatter(std::unique_ptr<spdlog::formatter>&& terminal_formatter, ImTerm::message::type type) {
