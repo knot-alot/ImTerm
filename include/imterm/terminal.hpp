@@ -92,14 +92,14 @@ namespace ImTerm {
 
 		// You shall call this constructor you used a non void value_type
 		template <typename T = value_type, typename = std::enable_if_t<!std::is_same_v<T, misc::details::structured_void>>>
-		explicit terminal(value_type& arg_value, const char * window_name_ = "terminal", int base_width_ = 900,
+		explicit terminal(value_type& arg_value, const char * window_name_ = "Terminal", int base_width_ = 900,
 		                  int base_height_ = 200, std::shared_ptr<TerminalHelper> th = std::make_shared<TerminalHelper>())
 				: terminal(arg_value, window_name_, base_width_, base_height_, std::move(th), terminal_helper_is_valid{}) {}
 
 
 		// You shall call this constructor you used a void value_type
 		template <typename T = value_type, typename = std::enable_if_t<std::is_same_v<T, misc::details::structured_void>>>
-		explicit terminal(const char * window_name_ = "terminal", int base_width_ = 900,
+		explicit terminal(const char * window_name_ = "Terminal", int base_width_ = 900,
 		                  int base_height_ = 200, std::shared_ptr<TerminalHelper> th = std::make_shared<TerminalHelper>())
 		                  : terminal(misc::details::no_value, window_name_, base_width_, base_height_, std::move(th), terminal_helper_is_valid{}) {}
 
